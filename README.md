@@ -1,2 +1,2 @@
 # movie-search
- React project
+ This movie-search is from existing local repo.
