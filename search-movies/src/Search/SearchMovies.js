@@ -1,17 +1,16 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import SearchResults from "../SearchResults/SearchResults";
-import { Card } from 'react-bootstrap';
 
 function SearchMovies () {
-    
+
+    let navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState("");
     const [searchMovies, setSearchMovies] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalResults, setTotalResults] = useState(0);
-    //const apiKey = process.env.REACT_APP_API; 
-
-    const apiKey = '27717333251de52ce726f64421bd3c19';
+    const apiKey = process.env.REACT_APP_API; 
 
     const numbeOfPages = Math.floor(totalResults / 20);
 
@@ -48,11 +47,13 @@ function SearchMovies () {
 
     }
 
+    const displayPage = () => {
+        navigate("/")
+    }
+
     return(
         <div>
-            <Card className="text-center">
-            <Card.Header><h1 class="text-white bg-dark">Movie Search Engine</h1></Card.Header>
-            <Card.Body>
+            <h1>Movie Search Engine</h1>
             <form action="" onSubmit={handleSubmit}>
             <label>Search Movie:</label>
             <input type="text" placeholder="Type movie title" onChange={(e) => handleSearch(e)}/>
@@ -66,9 +67,8 @@ function SearchMovies () {
                         </div>
                 ))}
             </ul>
+            <button onClick={displayPage}>Go to start page</button>
             { totalResults > 20 ? <SearchResults pages={numbeOfPages} currentPage={currentPage} adjacentPage={adjacentPage} /> : '' }
-            </Card.Body>
-            </Card>
         </div>
     );
 }

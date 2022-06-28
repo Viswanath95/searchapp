@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import Pagination from "../Pagination/Pagination";
-import { Card } from 'react-bootstrap';
 
 function DisplayMovies() {
-    
+
+    let navigate = useNavigate();
     const [movies, setMovies] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-
-    //const apiKey = process.env.REACT_APP_API; 
-
-    const apiKey = '27717333251de52ce726f64421bd3c19';
+    const apiKey = process.env.REACT_APP_API; 
 
     useEffect(() => {
 
@@ -33,10 +31,12 @@ function DisplayMovies() {
         })
     }
 
+    const searchPage = () => {
+        navigate("/search");
+    }
+
     return(
         <div>
-            <Card className="text-center">
-            <Card.Body>
             <ul>
                 {movies.map(show=> (
                     <div>
@@ -45,10 +45,9 @@ function DisplayMovies() {
                         <em>{show.vote_average}</em><br/>
                     </div>
                 ))}
-            </ul> 
+            </ul>
+          <button onClick={searchPage}>Go to search page</button> 
           <Pagination nextPage={nextPage} currentPage={currentPage}/>
-          </Card.Body>
-          </Card>
         </div>
     );
 }
