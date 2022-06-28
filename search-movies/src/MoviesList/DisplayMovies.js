@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Pagination from "../Pagination/Pagination";
+import { Card } from 'react-bootstrap';
 
 function DisplayMovies() {
     
     const [movies, setMovies] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
 
-    const apiKey = process.env.REACT_APP_API; 
+    //const apiKey = process.env.REACT_APP_API; 
+
+    const apiKey = '27717333251de52ce726f64421bd3c19';
 
     useEffect(() => {
 
@@ -32,6 +35,8 @@ function DisplayMovies() {
 
     return(
         <div>
+            <Card className="text-center">
+            <Card.Body>
             <ul>
                 {movies.map(show=> (
                     <div>
@@ -42,6 +47,8 @@ function DisplayMovies() {
                 ))}
             </ul> 
           <Pagination nextPage={nextPage} currentPage={currentPage}/>
+          </Card.Body>
+          </Card>
         </div>
     );
 }

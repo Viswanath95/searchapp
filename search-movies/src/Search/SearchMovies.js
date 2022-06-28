@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import SearchResults from "../SearchResults/SearchResults";
+import { Card } from 'react-bootstrap';
 
 function SearchMovies () {
     
@@ -8,8 +9,9 @@ function SearchMovies () {
     const [searchMovies, setSearchMovies] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalResults, setTotalResults] = useState(0);
+    //const apiKey = process.env.REACT_APP_API; 
 
-    const apiKey = process.env.REACT_APP_API; 
+    const apiKey = '27717333251de52ce726f64421bd3c19';
 
     const numbeOfPages = Math.floor(totalResults / 20);
 
@@ -48,7 +50,9 @@ function SearchMovies () {
 
     return(
         <div>
-            <h1>Movie Search Engine</h1>
+            <Card className="text-center">
+            <Card.Header><h1 class="text-white bg-dark">Movie Search Engine</h1></Card.Header>
+            <Card.Body>
             <form action="" onSubmit={handleSubmit}>
             <label>Search Movie:</label>
             <input type="text" placeholder="Type movie title" onChange={(e) => handleSearch(e)}/>
@@ -63,6 +67,8 @@ function SearchMovies () {
                 ))}
             </ul>
             { totalResults > 20 ? <SearchResults pages={numbeOfPages} currentPage={currentPage} adjacentPage={adjacentPage} /> : '' }
+            </Card.Body>
+            </Card>
         </div>
     );
 }

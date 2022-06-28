@@ -1,16 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import DisplayMovies from "./MoviesList/DisplayMovies";
 import SearchMovies from "./Search/SearchMovies";
 
 function App() {
-
-  const [show, setShow] = useState(true);
-
   return (
     <div>
-
-    { show ? <div><SearchMovies /><DisplayMovies /></div> : <SearchMovies /> }
-      
+        <SearchMovies />
+        <DisplayMovies />
     </div>
   );
 
